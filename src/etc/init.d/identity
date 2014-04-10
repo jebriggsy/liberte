@@ -9,14 +9,19 @@ live=/mnt/live
 torrc=/etc/tor/torrc
 ltordir=${lmount}/security/tor/hidden_service
 certsdir=${lmount}/security/cable/certs
-gtordir=/var/lib/tor/hidden_service
+li2pdir=${lmount}/security/i2p/eepsite
 
 # certdate should be legal, and also recent to allow
 # for migration of v1.0 cables certificates
 gentorhost=gen-tor-hostname
+geni2phost=gen-i2p-hostname
 genuser=gen-cable-username
 certdate=2012-06-16
 
+gtordir=/var/lib/tor/hidden_service
+gi2pdir=/var/lib/i2p/router/eepsite
+
+i2pnmplugin=/etc/NetworkManager/dispatcher.d/03-i2p
 
 depend() {
     # need OTFE mount
@@ -27,7 +32,7 @@ depend() {
 
     # Tor identity (if any) must be initialized before running NetworkManager/Tor
     # MAC randomization needs to occur before NetworkManager startup
-    before NetworkManager tor
+    before NetworkManager tor i2p
 
     # Dependents wait indefinitely (important for parallel startup)
     keyword -timeout
@@ -84,6 +89,25 @@ start() {
         eend $?
     fi
 
+	# Create (small) I2P eepsite key + b32/b64 hostnames, if they don't exist
+    if [ ! -e ${li2pdir} ]; then
+        ebegin Initializing I2P eepsite directory
+        sudo -n -u ${luser} ${geni2phost}
+        eend $?
+    fi
+
+	
+	# Propagate I2P eepsite key
+    if [ -e ${gi2pdir}/eepPriv.dat ]; then
+        ebegin Verifying existing I2P eepsite key
+        cmp -s ${li2pdir}/eepPriv.dat ${gi2pdir}/eepPriv.dat
+        eend $?
+    else
+        ebegin Propagating I2P eepsite key
+        rsync -lptHS --safe-links --chmod=u=rw,go= ${li2pdir}/eepPriv.dat ${gi2pdir} \
+            && chown -h i2p:i2p ${gi2pdir}/eepPriv.dat
+        eend $?
+    fi
 
     # Create (big) private key + communication certificates + username
     if [ ! -e ${certsdir} ]  &&  mountpoint -q ${lmount}; then

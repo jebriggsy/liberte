@@ -116,6 +116,7 @@ media-gfx/graphicsmagick        imagemagick
 media-libs/vips                 imagemagick
 net-dialup/ppp                  ipv6
 net-wireless/wpa_supplicant     ap p2p
+net-misc/electrum		qrcode
 
 # Internationalization
 app-i18n/uim                    -linguas_*

@@ -47,6 +47,7 @@ net-irc/hexchat
 net-im/pidgin
 net-ftp/gftp
 www-client/uget
+net-misc/electrum
 
 # Plugins
 mail-client/claws-mail-notification

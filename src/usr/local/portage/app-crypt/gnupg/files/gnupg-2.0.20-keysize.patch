@@ -1,0 +1,21 @@
+diff -uNr gpg1/gnupg-2.0.20/g10/keygen.c gpg2/gnupg-2.0.20/g10/keygen.c
+--- gpg1/gnupg-2.0.20/g10/keygen.c	2013-05-10 08:55:46.000000000 -0400
++++ gpg2/gnupg-2.0.20/g10/keygen.c	2013-09-23 11:42:57.217739853 -0400
+@@ -47,7 +47,7 @@
+    also in gpg.c:gpgconf_list.  You should also check that the value
+    is inside the bounds enforced by ask_keysize and gen_xxx.  */
+ #define DEFAULT_STD_ALGO    GCRY_PK_RSA
+-#define DEFAULT_STD_KEYSIZE 2048
++#define DEFAULT_STD_KEYSIZE 4096
+ 
+ 
+ #define MAX_PREFS 30 
+@@ -1774,7 +1774,7 @@
+ static unsigned
+ ask_keysize (int algo, unsigned int primary_keysize)
+ {
+-  unsigned int nbits, min, def = DEFAULT_STD_KEYSIZE, max=4096;
++  unsigned int nbits, min, def = DEFAULT_STD_KEYSIZE, max=8192;
+   int for_subkey = !!primary_keysize;
+   int autocomp = 0;
+ 

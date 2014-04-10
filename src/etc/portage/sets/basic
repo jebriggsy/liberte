@@ -73,6 +73,7 @@ net-proxy/torsocks
 net-proxy/obfsproxy
 net-proxy/privoxy
 net-mail/cables
+net-p2p/i2p
 
 # Peripheral utilities
 sys-apps/irqbalance
