@@ -4,4 +4,9 @@
 
 See [build instructions](http://dee.su/liberte-build) if you want to master a custom Liberté Linux image. Liberté can also serve as a robust framework for mastering Gentoo-based LiveUSBs/CDs. The build process is fully automated with incremental build support, and is more mature and reliable than most of Gentoo's own outdated [LiveCD tools](http://wolf31o2.org/projects/). Gentoo is an extremely flexible distribution for safely generating custom live media from source — for instance, Liberté does not contain Portage, GCC, Perl or Python.
 
+This fork is a customized version of Liberte updated to the latest stable (3.11.7-r1) hardened kernel.  It also replaces Epiphany with Firefox, and includes the addons NoScript, RequestPolicy, RefControl, SecretAgent, Disconnect, HTTPS-Everywhere, and AblockPlus with Pop-up blocker.  It re-enables I2P support, which was removed in version 2013.x and enables the web console so you can view susimail and other I2P goodies. GnuPG has been patched to generate 4096 bit keys by default and generate a maximum key size of 8192 bits.  Lastly, by popular demand, BitCoin support has been added via the thin client Electrum.
+
+As in the upstream, all network activity (other than Safe-Browser for public Wi-fi login) is routed through TOR or I2P. I2P tunnels are routed through TOR to keep your IP safely hidden.
+
+
 License: [GPLv2](http://www.gnu.org/licenses/gpl-2.0.html).
