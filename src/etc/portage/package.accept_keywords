@@ -4,6 +4,10 @@
 
 # Network
 =net-wireless/reaver-1.4*
+net-p2p/i2p
+dev-python/slowaes
+net-misc/electrum
+
 
 # GTK+ 3
 =x11-themes/light-themes-0.1.93*
