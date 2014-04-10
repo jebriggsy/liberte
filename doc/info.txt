@@ -187,6 +187,8 @@ Tor                              (127.0.0.1:9050)
     HexChat
     SSH
     OpenVPN
+    Electrum
+    I2P
   torify
     Claws-Mail
     gFTP                         (FTP only)
